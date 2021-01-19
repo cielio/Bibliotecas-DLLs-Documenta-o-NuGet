@@ -12,6 +12,85 @@ namespace ByteBank.SistemaAgencia
     {
         static void Main(string[] args)
         {
+            Lista<int> idades = new Lista<int>();
+
+            idades.Adicionar(5);
+            idades.AdicionarVarios(1, 5, 78);
+
+            Console.WriteLine(SomarVarios(1, 2, 3, 5, 56465, 45));
+            Console.WriteLine(SomarVarios(1, 2, 45));
+            
+
+            Console.ReadLine();
+        }
+
+        static void TestaListaDeObject()
+        {
+            ListaDeObject listaDeIdades = new ListaDeObject();
+
+            listaDeIdades.Adicionar(10);
+            listaDeIdades.Adicionar(5);
+            listaDeIdades.Adicionar(4);
+            listaDeIdades.Adicionar("um texto qualquer");
+            listaDeIdades.AdicionarVarios(16, 23, 60);
+
+            for (int i = 0; i < listaDeIdades.Tamanho; i++)
+            {
+                int idade = (int)listaDeIdades[i];
+                Console.WriteLine($"Idade no indice {i}: {idade}");
+            }
+        }
+
+        static int SomarVarios(params int[] numeros)
+        {
+            int acumulador = 0;
+            foreach(int numero in numeros)
+            {
+                acumulador += numero;
+            }
+            return acumulador;
+        }
+
+
+        static void TestaListaDeContaCorrente()
+        {
+            //ListaDeContaCorrente lista = new ListaDeContaCorrente();
+            ListaDeContaCorrente lista = new ListaDeContaCorrente();
+
+            ContaCorrente contaDoGui = new ContaCorrente(11111, 1111111);
+
+            ContaCorrente[] contas = new ContaCorrente[]
+            {
+                contaDoGui,
+                new ContaCorrente(874, 5679787),
+                new ContaCorrente(874, 5679754)
+            };
+
+            lista.AdicionarVarios(contas);
+
+            lista.AdicionarVarios(
+                contaDoGui,
+                new ContaCorrente(874, 5679787),
+                new ContaCorrente(874, 5679787),
+                new ContaCorrente(874, 5679787),
+                new ContaCorrente(874, 5679787),
+                new ContaCorrente(874, 5679787),
+                new ContaCorrente(874, 5679787),
+                new ContaCorrente(874, 5679787),
+                new ContaCorrente(874, 5679787)
+            );
+
+            for (int i = 0; i < lista.Tamanho; i++)
+            {
+                ContaCorrente itemAtual = lista[i];
+                Console.WriteLine($"Item na posição {i} = Conta {itemAtual.Numero}/{itemAtual.Agencia}");
+            }
+        }
+
+
+
+        static void TestaArrayDeContaCorrente()
+        {
             ContaCorrente[] contas = new ContaCorrente[]
                 {
                     new ContaCorrente(874, 5679787),
@@ -24,8 +103,6 @@ namespace ByteBank.SistemaAgencia
                 ContaCorrente contaAtual = contas[indice];
                 Console.WriteLine($"Conta {indice} {contaAtual.Numero}");
             }
-
-            Console.ReadLine();
         }
 
         static void TestaArrayInt()
@@ -57,5 +134,6 @@ namespace ByteBank.SistemaAgencia
             int media = acumulador / idades.Length;
             Console.WriteLine($"Média de idades = {media}");
         }
+
     }
 }
