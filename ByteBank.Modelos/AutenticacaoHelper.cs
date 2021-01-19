@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ByteBank.Modelos
 {
-    class AutenticacaoHelper
+    internal class AutenticacaoHelper
     {
-        public bool CompararSenha(string senhaVedadeira, string senhaTentativa)
+        public bool CompararSenhas(string senhaVerdadeira, string senhaTentativa)
         {
-            return senhaVedadeira == senhaTentativa;
+            return senhaVerdadeira == senhaTentativa;
         }
     }
 }
